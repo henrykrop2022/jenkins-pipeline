@@ -25,7 +25,7 @@ pipeline {
         }
         stage('DockerImageTag') {
             steps {
-                sh "docker tag jenkins-ci:latest $AWS_REPOO:latest"
+                sh "docker tag jenkins-ci:latest $AWS_REPO:latest"
                 sh "docker tag imageversion $AWS_REPO:v1.$BUILD_NUMBER"
             }
         }
