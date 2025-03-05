@@ -25,14 +25,14 @@ pipeline {
         }
         stage('DockerImageTag') {
             steps {
-                sh "docker tag jenkins-ci:latest $ECR_REPO:latest"
-                sh "docker tag imageversion $ECR_REPO:v1.$BUILD_NUMBER"
+                sh "docker tag jenkins-ci:latest $AWS_REPOO:latest"
+                sh "docker tag imageversion $AWS_REPO:v1.$BUILD_NUMBER"
             }
         }
         stage('Docker PushImage to ECR') {
             steps {
-               sh "docker push $ECR_REPO:latest"
-                sh "docker push $ECR_REPO:v1.$BUILD_NUMBER" 
+               sh "docker push $AWS_REPO:latest"
+                sh "docker push $AWS_REPO:v1.$BUILD_NUMBER" 
             }
         }
     }
