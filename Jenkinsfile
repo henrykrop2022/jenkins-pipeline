@@ -16,16 +16,21 @@ pipeline {
         stage('DockerImageBuild') {
             steps {
                 sh ' docker build -t jenkins-ci .'
+                sh ' docker build -t imageversion .'
             }
         }
         stage('DockerImageTag') {
             steps {
-                sh ' docker tag jenkins-ci:latest 180294207776.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci:latest'
+                sh ' docker tag jenkins-ci:latest \
+                180294207776.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci:latest'
+                sh ' docker tag imageversion \
+                180294207776.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci:v1.$BUILD_NUMBER'
             }
         }
         stage('Docker PushImage to ECR') {
             steps {
                sh ' docker push 180294207776.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci:latest'
+                sh ' docker push 180294207776.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci:v1.$BUILD_NUMBER'
             }
         }
     }
