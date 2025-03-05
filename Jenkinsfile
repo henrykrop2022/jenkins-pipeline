@@ -1,19 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('Clone') {
+        stage('CodeScan') {
             steps {
-                sh ' echo "cloning repo"'
+                sh ' trivy --version '        
+                }
+        }
+        stage('dockerImageBuild') {
+            steps {
+                sh ' docker -v'
             }
         }
-        stage('Test') {
+        stage('PushImage') {
             steps {
-                sh ' echo "Testing"'
-            }
-        }
-        stage('Create file') {
-            steps {
-               sh ' echo "touch text-${BUILD_ID}"'
+               sh ' docker ps'
             }
         }
     }
