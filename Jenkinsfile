@@ -1,17 +1,17 @@
 pipeline {
     agent any
     stages {
-        stage('clone') {
+        stage('Clone') {
             steps {
-                sh ' echo "cloning repo"'
+                sh 'cloning repo'
             }
         }
         stage('Test') {
             steps {
-                sh "echo 'Testing..'"
+                sh 'Testing'
             }
         }
-        stage('create file') {
+        stage('Create file') {
             steps {
                sh ' touch text-${BUILD_ID}'
             }
