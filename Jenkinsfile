@@ -3,17 +3,17 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                sh 'cloning repo'
+                sh ' echo "cloning repo"'
             }
         }
         stage('Test') {
             steps {
-                sh 'Testing'
+                sh ' echo "Testing"'
             }
         }
         stage('Create file') {
             steps {
-               sh ' touch text-${BUILD_ID}'
+               sh ' echo "touch text-${BUILD_ID}"'
             }
         }
     }
